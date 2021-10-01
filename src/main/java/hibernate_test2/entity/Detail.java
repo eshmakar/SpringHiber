@@ -20,6 +20,12 @@ public class Detail {
     @Column(name = "email")
     private String email;
 
+//    @OneToOne(mappedBy = "empDetail", cascade = CascadeType.ALL)//двунаправленное отношение (Bi directional)
+//    private Employee employee;
+
+    @OneToOne(mappedBy = "empDetail", cascade = {CascadeType.PERSIST, CascadeType.REFRESH}) //используем не полный каскад, если хотим удалить только детали
+    private Employee employee;
+
     public Detail() {
     }
 
@@ -27,6 +33,14 @@ public class Detail {
         this.city = city;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public int getId() {
