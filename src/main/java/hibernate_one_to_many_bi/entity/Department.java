@@ -19,7 +19,7 @@ public class Department {
     int minSalary;
 
     //если выбрать CascadeType.ALL - то при удалении одного элемента будут удалены все!
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE}, mappedBy = "department")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department", fetch = FetchType.LAZY)
     private List<Employee> emps;
 
     public void addEmployeeToDepartment(Employee empl){

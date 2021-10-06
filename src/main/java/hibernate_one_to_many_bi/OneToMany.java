@@ -18,7 +18,7 @@ public class OneToMany {
         try {
             session = factory.getCurrentSession();
             //Добавление работников и департаментов
-            /*Employee employee1 = new Employee("Anton", "Pavlov", 950);
+       /*     Employee employee1 = new Employee("Anton", "Pavlov", 950);
             Employee employee2 = new Employee("Nancy", "Smith", 1200);
             Department department = new Department("HR", 650, 1500);
 
@@ -29,12 +29,23 @@ public class OneToMany {
             session.save(department);
             session.getTransaction().commit();*/
 
+
             //Получение работников вместе с департаментами
-            /*session.beginTransaction();
-            Department department = session.get(Department.class, 1);
+            session.beginTransaction();
+            System.out.println();
+            System.out.println("Before session get");
+            Department department = session.get(Department.class, 5);
+            System.out.println();
+            System.out.println("before print department info");
             System.out.println(department);
+
+            //можно догрузить оставшиеся информации перед закрытием сессии, чтобы получить доступ после закрытия соединения
+            department.getEmp().get(0);
+
+            session.getTransaction().commit();
+            System.out.println();
+            System.out.println("before print department getEmp");
             System.out.println(department.getEmp());
-            session.getTransaction().commit();*/
 
             //При удалении одного работника удаляется его департамент и все работники к-ые относятся к этому департаменту тоже
             //в этом случае нельзя использовать CascadeType.ALL
@@ -47,11 +58,11 @@ public class OneToMany {
 
             session.getTransaction().commit();*/
 
-            session.beginTransaction();
+       /*     session.beginTransaction();
             Employee employee = session.get(Employee.class, 6);
             session.delete(employee);
 
-            session.getTransaction().commit();
+            session.getTransaction().commit();*/
 
 
         } finally {

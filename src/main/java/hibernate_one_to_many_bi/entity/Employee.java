@@ -18,7 +18,7 @@ public class Employee {
     int salary;
 
     //если выбрать CascadeType.ALL - то при удалении одного элемента будут удалены все!
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE})
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "department_id")
     private Department department;
 
