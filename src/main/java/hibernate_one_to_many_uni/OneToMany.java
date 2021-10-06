@@ -1,7 +1,7 @@
-package one_to_many_bi;
+package hibernate_one_to_many_uni;
 
-import one_to_many_bi.entity.Department;
-import one_to_many_bi.entity.Employee;
+import hibernate_one_to_many_uni.entity.Department;
+import hibernate_one_to_many_uni.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -18,9 +18,9 @@ public class OneToMany {
         try {
             session = factory.getCurrentSession();
             //Добавление работников и департаментов
-            /*Employee employee1 = new Employee("Anton", "Pavlov", 950);
-            Employee employee2 = new Employee("Nancy", "Smith", 1200);
-            Department department = new Department("HR", 650, 1500);
+    /*        Employee employee1 = new Employee("Valerii", "Ivanov", 650);
+            Employee employee2 = new Employee("Pavel", "Durov", 1300);
+            Department department = new Department("IT", 850, 1800);
 
             department.addEmployeeToDepartment(employee1);
             department.addEmployeeToDepartment(employee2);
@@ -30,8 +30,8 @@ public class OneToMany {
             session.getTransaction().commit();*/
 
             //Получение работников вместе с департаментами
-            /*session.beginTransaction();
-            Department department = session.get(Department.class, 1);
+       /*     session.beginTransaction();
+            Department department = session.get(Department.class, 4);
             System.out.println(department);
             System.out.println(department.getEmp());
             session.getTransaction().commit();*/
@@ -48,8 +48,8 @@ public class OneToMany {
             session.getTransaction().commit();*/
 
             session.beginTransaction();
-            Employee employee = session.get(Employee.class, 6);
-            session.delete(employee);
+           Department department = session.get(Department.class, 3);
+           session.delete(department);
 
             session.getTransaction().commit();
 

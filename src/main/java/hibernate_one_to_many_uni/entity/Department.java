@@ -1,4 +1,4 @@
-package one_to_many_bi.entity;
+package hibernate_one_to_many_uni.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,16 +18,15 @@ public class Department {
     @Column(name = "min_salary")
     int minSalary;
 
-    //если выбрать CascadeType.ALL - то при удалении одного элемента будут удалены все!
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE}, mappedBy = "department")
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id")
     private List<Employee> emps;
 
     public void addEmployeeToDepartment(Employee empl){
         if (emps==null)
             emps = new ArrayList<>();
         emps.add(empl);
-        empl.setDepartment(this);//это двунаправленный связь, поэтому на рабочий добавляем департамент
-
     }
 
     public int getId() {
